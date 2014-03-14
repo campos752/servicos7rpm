@@ -1,11 +1,20 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ch.qos.logback.classic.PatternLayout;
+
 import com.fasterxml.jackson.databind.JsonNode;
+
+import org.apache.commons.io.IOUtils;
 import org.junit.*;
 
+import play.Play;
 import play.mvc.*;
 import play.test.*;
 import play.data.DynamicForm;
@@ -14,7 +23,6 @@ import play.data.validation.Constraints.RequiredValidator;
 import play.i18n.Lang;
 import play.libs.F;
 import play.libs.F.*;
-
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
 
@@ -28,17 +36,19 @@ import static org.fest.assertions.Assertions.*;
 public class ApplicationTest {
 
     @Test
-    public void simpleCheck() {
-        int a = 1 + 1;
-        assertThat(a).isEqualTo(2);
+    public void simpleCheck() throws IOException {
+        FileInputStream in = new FileInputStream("./teste.txt");
+        String result = IOUtils.toString(in);
+        assertThat(result).contains("Boa tarde");
+        in.close();
     }
 
-    @Test
-    public void renderTemplate() {
-        Content html = views.html.index.render("Your new application is ready.");
-        assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("Your new application is ready.");
-    }
+//    @Test
+//    public void renderTemplate() {
+//        Content html = views.html.index.render("Your new application is ready.");
+//        assertThat(contentType(html)).isEqualTo("text/html");
+//        assertThat(contentAsString(html)).contains("Your new application is ready.");
+//    }
 
 
 }

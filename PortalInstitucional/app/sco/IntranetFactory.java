@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 
+import play.Logger;
+import play.Play;
 import models.Noticia;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
@@ -39,26 +41,21 @@ public class IntranetFactory {
 
 	public void getFormularioCadNoticia() {
 		try {
-			paginaAtual = webClient
-					.getPage("https://intranet.policiamilitar.mg.gov.br/AutenticacaoSSO/login.action?josso_back_to=https://intranet.policiamilitar.mg.gov.br/auth-pmmg/josso_security_check");
-			HtmlTextInput textLogin = (HtmlTextInput) paginaAtual
-					.getElementById("textLogin");
-			HtmlPasswordInput senha = (HtmlPasswordInput) paginaAtual
-					.getElementById("senha");
-			HtmlSubmitInput btn = (HtmlSubmitInput) paginaAtual
-					.getElementById("formlogin__login");
+			paginaAtual = webClient.getPage("https://intranet.policiamilitar.mg.gov.br/AutenticacaoSSO/login.action?josso_back_to=https://intranet.policiamilitar.mg.gov.br/auth-pmmg/josso_security_check");
+			Logger.info("Site carregado com sucesso.");
+			HtmlTextInput textLogin = (HtmlTextInput) paginaAtual.getElementById("textLogin");
+			HtmlPasswordInput senha = (HtmlPasswordInput) paginaAtual.getElementById("senha");
+			HtmlSubmitInput btn = (HtmlSubmitInput) paginaAtual.getElementById("formlogin__login");
 			textLogin.setValueAttribute("1277524");
 			senha.setValueAttribute("machado");
 			paginaAtual = btn.click();
-
-			HtmlAnchor hrefCominicaçãoSocial = paginaAtual
-					.getAnchorByHref("javascript:openLegadoApp('/comunicacao/default.asp');");
+			Logger.info("Pagina inicial carregada");
+			
+			HtmlAnchor hrefCominicaçãoSocial = paginaAtual.getAnchorByHref("javascript:openLegadoApp('/comunicacao/default.asp');");
 			paginaAtual = hrefCominicaçãoSocial.click();
-			HtmlAnchor hrefManutencao = paginaAtual
-					.getAnchorByText("Manutenção");
+			HtmlAnchor hrefManutencao = paginaAtual.getAnchorByText("Manutenção");
 			paginaAtual = hrefManutencao.click();
-			HtmlAnchor hrefAdmGeral = paginaAtual
-					.getAnchorByText("Administração Geral");
+			HtmlAnchor hrefAdmGeral = paginaAtual.getAnchorByText("Administração Geral");
 			paginaAtual = hrefAdmGeral.click();
 			HtmlAnchor hrefNoticias = paginaAtual.getAnchorByText("Notícias");
 			paginaAtual = hrefNoticias.click();
@@ -80,25 +77,29 @@ public class IntranetFactory {
 		HtmlForm formCadNoticia = paginaAtual.getFormByName("cadNoticia");
 		HtmlTextInput titulo = formCadNoticia.getInputByName("entity.titulo");
 		titulo.setValueAttribute(noticia.titulo);
-		HtmlHiddenInput unidade = formCadNoticia
-				.getInputByName("entity.unidade.id");
+		HtmlHiddenInput unidade = formCadNoticia.getInputByName("entity.unidade.id");
 		unidade.setValueAttribute("584");
-		formCadNoticia.getInputByName("entity.unidade.nome").setValueAttribute(
-				"7 RPM");
-		HtmlCheckBoxInput destaque = formCadNoticia
-				.getInputByName("entity.destaque");
+		formCadNoticia.getInputByName("entity.unidade.nome").setValueAttribute("7 RPM");
+		HtmlCheckBoxInput destaque = formCadNoticia.getInputByName("entity.destaque");
 		destaque.setChecked(true);
 		HtmlTextArea resumo = formCadNoticia.getTextAreaByName("entity.resumo");
 		resumo.setText(noticia.resumo);
 		List<HtmlInput> listaFileInput = formCadNoticia
 				.getInputsByName("upload");
 		if (noticia.imagens != null) {
-			for (int i = 0; i < noticia.imagens.size()
-					&& i < listaFileInput.size(); i++) {
-				HtmlFileInput fileInput = (HtmlFileInput) listaFileInput.get(i);
-				fileInput.setValueAttribute(noticia.imagens.get(i));
+			for (int i = 0; i < noticia.imagens.size()	&& i < listaFileInput.size(); i++) {
+				HtmlHiddenInput localImagem1 = formCadNoticia.getInputByName("entity.localImagem1");
+				HtmlHiddenInput nomeImagem1 = formCadNoticia.getInputByName("entity.nomeImagem1");
+				HtmlHiddenInput typeImagem1 = formCadNoticia.getInputByName("entity.contentTypeImagem5");
+				localImagem1.setValueAttribute(noticia.imagens.get(i));
+				nomeImagem1.setValueAttribute("./1392904136463.jpg");
+				typeImagem1.setValueAttribute("image/jpeg");
+//				HtmlFileInput fileInput = (HtmlFileInput) listaFileInput.get(i);
+//				fileInput.setValueAttribute(noticia.imagens.get(i));
 			}
 		}
+		HtmlTextArea inputTexto = formCadNoticia.getTextAreaByName("entity.texto");
+		inputTexto.setText(noticia.conteudo);
 		try {
 			paginaAtual = formCadNoticia.getInputByName("cmdSalvar").click();
 		} catch (ElementNotFoundException e) {
