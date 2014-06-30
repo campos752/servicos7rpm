@@ -2,19 +2,17 @@ package pmmg.rpm7.seo;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-
-import javax.persistence.EntityManager;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import org.junit.Test;
 
-import pmmg.rpm7.seo.modelos.Municipio;
 import pmmg.rpm7.seo.modelos.Rat;
-import pmmg.rpm7.seo.modelos.RatProdutividade;
 
 public class SidsFactoryTest {
 	private SidsFactory s;
+	private RatParser parser = new RatParser();
 	
 	public SidsFactoryTest(){
 		s = new SidsFactory();
@@ -33,10 +31,16 @@ public class SidsFactoryTest {
 	}
 	
 	@Test
-	public void testProcessaLinha(){
-		Rat r = new Rat();
-		s.processaLinha("2014-RAT-0004370879;Fechado;(Y07003) OPERACAO DE INCURSAO EM ZONA QUENTE DE CRIMINALIDADE;01/05/2014 18:00;CARLOS ROBERTO TEIXEIRA/1034735;RUA SAMUEL BERNARDES / RUA DONA MARIA MARTINS DE ABREU - LAGOA DA PRATA / MG", r);
-		assertTrue(r.getEndereco().equals("SAMUEL BERNARDES"));
+	public void testProcessaLinha() throws FileNotFoundException{
+		Scanner scn = new Scanner(new FileInputStream("relatorio.csv"), "ISO-8859-1");
+		while(scn.hasNextLine()){
+			Rat r = new Rat();
+			String str = scn.nextLine();
+			parser.processaLinha(str, r);
+			System.out.println(r.getTipoLogradouro() + "\t Endereco: " + r.getEndereco() + "\t Nr: " + r.getNrEndereco() +
+					"\t Compl: " + r.getComplemento() + "\t Bairro: " + r.getBairro() + "\t Mun.: " + r.getMunicipio());
+		}
+		scn.close();
 	}
 	
 	@Test
@@ -50,58 +54,11 @@ public class SidsFactoryTest {
 	}
 	
 	@Test
-	public void gravar(){
-		EntityManager em = s.getEntityManager();
-		Rat rat = s.getEntityManager().find(Rat.class, "2014-RAT-0005847497");
-		rat.setId("2014-RAT-0005847497");
-		rat.setBairro("CENTRO");
-		rat.setCodNatureza("Y10000");
-		rat.setCodUnidade("M2560");
-		rat.setComplemento("FUNDOS");
-		rat.setDataInicio(new Date());
-		rat.setDescNatureza("DESCRICAO DE OPERACAO");
-		rat.setEndereco("RUA UM");
-		rat.setMatDigitador(1111111);
-		rat.setMunicipio("DIVINOPOLIS");
-		rat.setNomeDigitador("CB JOSE");
-		rat.setNomeUnidade("23 BPM/7 RPM");
-		rat.setNrEndereco(200);
-		rat.setProdutividade(new ArrayList<RatProdutividade>());
-		RatProdutividade p1 = new RatProdutividade();
-		p1.setNrAtividade("2014-RAT-0005847497");
-		p1.setDescricao("Veic fiscalizados");
-		p1.setQtd(1);
-		RatProdutividade p2 = new RatProdutividade();
-		p2.setNrAtividade("2014-RAT-0005847497");
-		p2.setDescricao("Veic retidos");
-		p2.setQtd(2);
-		RatProdutividade p3 = new RatProdutividade();
-		p3.setNrAtividade("2014-RAT-0005847497");
-		p3.setDescricao("Veic apreendidos");
-		p3.setQtd(3);
-		rat.getProdutividade().add(p1);
-		rat.getProdutividade().add(p2);
-		rat.getProdutividade().add(p3);
-		em.getTransaction().begin();
-		em.persist(rat);
-		em.getTransaction().commit();
-		System.out.println("Rat adicionado com sucesso");
-		em.close();
-	}
-	
-	@Test
 	public void testaRatAberto(){
 		Rat r = new Rat();
-		r.setId("2014-RAT-0006184315");
-		s.logar("pm1277524", "@casp123+-");
-		s.atualizaRat(r);
+		r.setId("2014-RAT-0006593999");
+		s.logar("pm1277524", "@casp123+-");	
+		assertFalse(s.isRatFechado(r.getId()));
 		s.sair();
 	}
-	
-	@Test
-	public void testJPA(){
-		Municipio m = s.getEntityManager().find(Municipio.class, 312230);
-		System.out.println(m.getNome());
-	}
-
 }

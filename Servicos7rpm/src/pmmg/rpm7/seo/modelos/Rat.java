@@ -3,51 +3,27 @@ package pmmg.rpm7.seo.modelos;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 
-@Entity
-@Table(name="rat")
 public class Rat {
-	@Id
-	@Column(name = "nr_atividade")
 	private String id;
 	private String estado;
-	@Column(name = "natureza")
 	private String codNatureza;
-	@Column(name = "descricao")
 	private String descNatureza;
-	@Column(name = "data_inicio")
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInicio;
-	@Column(name = "matricula_digitador")
 	private Integer matDigitador;
-	@Column(name = "nome_digitador")
 	private String nomeDigitador;
-	@Column(name = "tipo_logradouro")
 	private String tipoLogradouro;
 	private String endereco;
-	@Column(name = "num_endereco")
 	private Integer nrEndereco;
-	@Column(name = "endereco_compl")
 	private String complemento;
 	private String bairro;
 	private String municipio;
-	@Column(name = "cod_unidade_servico")
 	private String codUnidade;
-	@Column(name = "nome_unidade_servico")
 	private String nomeUnidade;
- 
-	@OneToMany(cascade={ CascadeType.ALL}, fetch=FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "nr_atividade")
     private List<RatProdutividade> produtividade;
 	
 	public String getId() {
@@ -145,6 +121,65 @@ public class Rat {
 	}
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+	
+	public static interface RatMapper{
+	
+		@Insert("insert into rat (nr_atividade, estado, bairro, natureza, cod_unidade_servico, endereco_compl, data_inicio, "
+				+ "descricao, endereco, matricula_digitador, municipio, nome_digitador, nome_unidade_servico, num_endereco, "
+				+ "tipo_logradouro) values (#{id}, #{estado}, #{bairro}, #{codNatureza}, #{codUnidade}, #{complemento}, #{dataInicio}, "
+				+ "#{descNatureza}, #{endereco}, #{matDigitador}, #{municipio}, #{nomeDigitador}, #{nomeUnidade}, "
+				+ "#{nrEndereco}, #{tipoLogradouro}) on duplicate key update estado = #{estado}, bairro = #{bairro}, natureza = #{codNatureza}, "
+				+ "cod_unidade_servico = #{codUnidade}, endereco_compl = #{complemento}, data_inicio = #{dataInicio}, "
+				+ "descricao = #{descNatureza}, endereco = #{endereco}, matricula_digitador = #{matDigitador}, municipio = #{municipio}, "
+				+ "nome_digitador = #{nomeDigitador}, nome_unidade_servico = #{nomeUnidade}, num_endereco = #{nrEndereco}, "
+				+ "tipo_logradouro = #{tipoLogradouro}")
+		void inserir(Rat rat);
+		
+		@Select("select nr_atividade, estado, bairro, natureza, cod_unidade_servico, endereco_compl, data_inicio, "
+				+ "descricao, endereco, matricula_digitador, municipio, nome_digitador, nome_unidade_servico, num_endereco, "
+				+ "tipo_logradouro from rat where estado = #{estado}")
+		@Results(value = {
+				@Result(property = "bairro", column = "bairro"),
+				@Result(property = "codNatureza", column = "natureza"),
+				@Result(property = "codUnidade", column = "cod_unidade_servico"),
+				@Result(property = "complemento", column = "endereco_compl"), 
+				@Result(property = "dataInicio", column = "data_inicio"),
+				@Result(property = "descNatureza", column = "descricao"),
+				@Result(property = "endereco", column = "endereco"),
+				@Result(property = "estado", column = "estado"),
+				@Result(property = "id", column = "nr_atividade"),
+				@Result(property = "matDigitador", column = "matricula_digitador"),
+				@Result(property = "municipio", column = "municipio"),
+				@Result(property = "nomeDigitador", column = "none_digitador"),
+				@Result(property = "nomeUnidade", column = "nome_unidade_servico"),
+				@Result(property = "nrEndereco", column = "num_endereco"),
+				@Result(property = "tipoLogradouro", column = "tipo_logradouro")
+		})
+		List<Rat> getRatsAbertos(String estado);
+		
+		@Select("select nr_atividade, estado, bairro, natureza, cod_unidade_servico, endereco_compl, data_inicio, "
+				+ "descricao, endereco, matricula_digitador, municipio, nome_digitador, nome_unidade_servico, num_endereco, "
+				+ "tipo_logradouro from rat where nr_atividade = #{nrAtividade}")
+		@Results(value = {
+				@Result(property = "bairro", column = "bairro"),
+				@Result(property = "codNatureza", column = "natureza"),
+				@Result(property = "codUnidade", column = "cod_unidade_servico"),
+				@Result(property = "complemento", column = "endereco_compl"), 
+				@Result(property = "dataInicio", column = "data_inicio"),
+				@Result(property = "descNatureza", column = "descricao"),
+				@Result(property = "endereco", column = "endereco"),
+				@Result(property = "estado", column = "estado"),
+				@Result(property = "id", column = "nr_atividade"),
+				@Result(property = "matDigitador", column = "matricula_digitador"),
+				@Result(property = "municipio", column = "municipio"),
+				@Result(property = "nomeDigitador", column = "none_digitador"),
+				@Result(property = "nomeUnidade", column = "nome_unidade_servico"),
+				@Result(property = "nrEndereco", column = "num_endereco"),
+				@Result(property = "tipoLogradouro", column = "tipo_logradouro")
+		})
+		
+		Rat getRat(String nrAtividade);
 	}
 	
 }

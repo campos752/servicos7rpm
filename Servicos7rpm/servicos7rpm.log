@@ -6305,3 +6305,363 @@ Caused by: java.net.ConnectException: Connection timed out: connect
 12:39:23,196  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
 12:39:23,196  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
 12:39:24,976  WARN DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+11:28:16,596  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+11:28:16,820  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+11:28:16,821  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+11:28:19,021  WARN DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+11:31:39,461 ERROR WebClient:810 - Error loading content into window
+org.apache.http.conn.HttpHostConnectException: Connect to web.sids.mg.gov.br:443 [web.sids.mg.gov.br/200.198.34.194] failed: Connection timed out: connect
+	at org.apache.http.impl.conn.HttpClientConnectionOperator.connect(HttpClientConnectionOperator.java:138)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:314)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:363)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:219)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:195)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:85)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:108)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:186)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:72)
+	at com.gargoylesoftware.htmlunit.HttpWebConnection.getResponse(HttpWebConnection.java:179)
+	at com.gargoylesoftware.htmlunit.WebClient.loadWebResponseFromWebConnection(WebClient.java:1297)
+	at com.gargoylesoftware.htmlunit.WebClient.loadWebResponse(WebClient.java:1214)
+	at com.gargoylesoftware.htmlunit.WebClient.getPage(WebClient.java:325)
+	at com.gargoylesoftware.htmlunit.WebClient.openWindow(WebClient.java:807)
+	at com.gargoylesoftware.htmlunit.javascript.host.Window.open(Window.java:397)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at net.sourceforge.htmlunit.corejs.javascript.MemberBox.invoke(MemberBox.java:120)
+	at net.sourceforge.htmlunit.corejs.javascript.FunctionObject.call(FunctionObject.java:448)
+	at net.sourceforge.htmlunit.corejs.javascript.Interpreter.interpretLoop(Interpreter.java:1531)
+	at net.sourceforge.htmlunit.corejs.javascript.Interpreter.interpret(Interpreter.java:798)
+	at net.sourceforge.htmlunit.corejs.javascript.InterpretedFunction.call(InterpretedFunction.java:105)
+	at net.sourceforge.htmlunit.corejs.javascript.ContextFactory.doTopCall(ContextFactory.java:411)
+	at com.gargoylesoftware.htmlunit.javascript.HtmlUnitContextFactory.doTopCall(HtmlUnitContextFactory.java:309)
+	at net.sourceforge.htmlunit.corejs.javascript.ScriptRuntime.doTopCall(ScriptRuntime.java:3057)
+	at net.sourceforge.htmlunit.corejs.javascript.InterpretedFunction.exec(InterpretedFunction.java:115)
+	at com.gargoylesoftware.htmlunit.javascript.JavaScriptEngine$3.doRun(JavaScriptEngine.java:566)
+	at com.gargoylesoftware.htmlunit.javascript.JavaScriptEngine$HtmlUnitContextAction.run(JavaScriptEngine.java:674)
+	at net.sourceforge.htmlunit.corejs.javascript.Context.call(Context.java:620)
+	at net.sourceforge.htmlunit.corejs.javascript.ContextFactory.call(ContextFactory.java:513)
+	at com.gargoylesoftware.htmlunit.javascript.JavaScriptEngine.execute(JavaScriptEngine.java:575)
+	at com.gargoylesoftware.htmlunit.javascript.JavaScriptEngine.execute(JavaScriptEngine.java:550)
+	at com.gargoylesoftware.htmlunit.html.HtmlPage.executeJavaScriptIfPossible(HtmlPage.java:971)
+	at com.gargoylesoftware.htmlunit.html.HtmlScript.executeInlineScriptIfNeeded(HtmlScript.java:347)
+	at com.gargoylesoftware.htmlunit.html.HtmlScript.executeScriptIfNeeded(HtmlScript.java:407)
+	at com.gargoylesoftware.htmlunit.html.HtmlScript$3.execute(HtmlScript.java:272)
+	at com.gargoylesoftware.htmlunit.html.HtmlScript.onAllChildrenAddedToPage(HtmlScript.java:286)
+	at com.gargoylesoftware.htmlunit.html.HTMLParser$HtmlUnitDOMBuilder.endElement(HTMLParser.java:702)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at com.gargoylesoftware.htmlunit.html.HTMLParser$HtmlUnitDOMBuilder.endElement(HTMLParser.java:662)
+	at org.cyberneko.html.HTMLTagBalancer.callEndElement(HTMLTagBalancer.java:1170)
+	at org.cyberneko.html.HTMLTagBalancer.endElement(HTMLTagBalancer.java:1072)
+	at org.cyberneko.html.filters.DefaultFilter.endElement(DefaultFilter.java:206)
+	at org.cyberneko.html.filters.NamespaceBinder.endElement(NamespaceBinder.java:330)
+	at org.cyberneko.html.HTMLScanner$ContentScanner.scanEndElement(HTMLScanner.java:3126)
+	at org.cyberneko.html.HTMLScanner$ContentScanner.scan(HTMLScanner.java:2093)
+	at org.cyberneko.html.HTMLScanner.scanDocument(HTMLScanner.java:920)
+	at org.cyberneko.html.HTMLConfiguration.parse(HTMLConfiguration.java:499)
+	at org.cyberneko.html.HTMLConfiguration.parse(HTMLConfiguration.java:452)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at com.gargoylesoftware.htmlunit.html.HTMLParser$HtmlUnitDOMBuilder.parse(HTMLParser.java:926)
+	at com.gargoylesoftware.htmlunit.html.HTMLParser.parse(HTMLParser.java:245)
+	at com.gargoylesoftware.htmlunit.html.HTMLParser.parseHtml(HTMLParser.java:191)
+	at com.gargoylesoftware.htmlunit.DefaultPageCreator.createHtmlPage(DefaultPageCreator.java:268)
+	at com.gargoylesoftware.htmlunit.DefaultPageCreator.createPage(DefaultPageCreator.java:156)
+	at com.gargoylesoftware.htmlunit.WebClient.loadWebResponseInto(WebClient.java:455)
+	at com.gargoylesoftware.htmlunit.WebClient.loadDownloadedResponses(WebClient.java:2055)
+	at com.gargoylesoftware.htmlunit.javascript.JavaScriptEngine.doProcessPostponedActions(JavaScriptEngine.java:717)
+	at com.gargoylesoftware.htmlunit.javascript.JavaScriptEngine.processPostponedActions(JavaScriptEngine.java:804)
+	at com.gargoylesoftware.htmlunit.html.HtmlElement.click(HtmlElement.java:1322)
+	at com.gargoylesoftware.htmlunit.html.HtmlElement.click(HtmlElement.java:1265)
+	at com.gargoylesoftware.htmlunit.html.HtmlElement.click(HtmlElement.java:1213)
+	at com.gargoylesoftware.htmlunit.html.HtmlImageInput.click(HtmlImageInput.java:135)
+	at com.gargoylesoftware.htmlunit.html.HtmlImageInput.click(HtmlImageInput.java:100)
+	at pmmg.rpm7.seo.SidsFactory.getRelatorio(SidsFactory.java:148)
+	at pmmg.rpm7.seo.RatImport.<init>(RatImport.java:37)
+	at pmmg.rpm7.seo.RatImport.main(RatImport.java:71)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.apache.http.conn.ssl.SSLConnectionSocketFactory.connectSocket(SSLConnectionSocketFactory.java:239)
+	at com.gargoylesoftware.htmlunit.HtmlUnitSSLConnectionSocketFactory.connectSocket(HtmlUnitSSLConnectionSocketFactory.java:145)
+	at org.apache.http.impl.conn.HttpClientConnectionOperator.connect(HttpClientConnectionOperator.java:118)
+	... 68 more
+11:31:39,561 ERROR CSSStyleSheet:343 - IOException loading https://web.sids.mg.gov.br/reds/atividade/consultarAtividade.do
+org.apache.http.conn.HttpHostConnectException: Connect to web.sids.mg.gov.br:443 [web.sids.mg.gov.br/200.198.34.194] failed: Connection timed out: connect
+	at org.apache.http.impl.conn.HttpClientConnectionOperator.connect(HttpClientConnectionOperator.java:138)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:314)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:363)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:219)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:195)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:85)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:108)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:186)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:72)
+	at com.gargoylesoftware.htmlunit.HttpWebConnection.getResponse(HttpWebConnection.java:179)
+	at com.gargoylesoftware.htmlunit.WebClient.loadWebResponseFromWebConnection(WebClient.java:1297)
+	at com.gargoylesoftware.htmlunit.WebClient.loadWebResponse(WebClient.java:1214)
+	at com.gargoylesoftware.htmlunit.javascript.host.css.CSSStyleSheet.loadStylesheet(CSSStyleSheet.java:311)
+	at com.gargoylesoftware.htmlunit.javascript.host.html.HTMLLinkElement.getSheet(HTMLLinkElement.java:130)
+	at com.gargoylesoftware.htmlunit.javascript.host.css.StyleSheetList.item(StyleSheetList.java:157)
+	at com.gargoylesoftware.htmlunit.javascript.host.Window.getComputedStyle(Window.java:1619)
+	at com.gargoylesoftware.htmlunit.javascript.host.html.HTMLElement.isDislayNone(HTMLElement.java:1686)
+	at com.gargoylesoftware.htmlunit.javascript.host.html.HTMLElement.getOffsetWidth(HTMLElement.java:1706)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at net.sourceforge.htmlunit.corejs.javascript.MemberBox.invoke(MemberBox.java:120)
+	at net.sourceforge.htmlunit.corejs.javascript.ScriptableObject$GetterSlot.getValue(ScriptableObject.java:320)
+	at net.sourceforge.htmlunit.corejs.javascript.ScriptableObject.get(ScriptableObject.java:483)
+	at com.gargoylesoftware.htmlunit.javascript.SimpleScriptable.get(SimpleScriptable.java:85)
+	at com.gargoylesoftware.htmlunit.javascript.host.html.HTMLElement.get(HTMLElement.java:2069)
+	at net.sourceforge.htmlunit.corejs.javascript.ScriptableObject.getProperty(ScriptableObject.java:2296)
+	at net.sourceforge.htmlunit.corejs.javascript.ScriptRuntime.getObjectProp(ScriptRuntime.java:1477)
+	at net.sourceforge.htmlunit.corejs.javascript.ScriptRuntime.getObjectProp(ScriptRuntime.java:1471)
+	at net.sourceforge.htmlunit.corejs.javascript.Interpreter.interpretLoop(Interpreter.java:1241)
+	at net.sourceforge.htmlunit.corejs.javascript.Interpreter.interpret(Interpreter.java:798)
+	at net.sourceforge.htmlunit.corejs.javascript.InterpretedFunction.call(InterpretedFunction.java:105)
+	at net.sourceforge.htmlunit.corejs.javascript.ContextFactory.doTopCall(ContextFactory.java:411)
+	at com.gargoylesoftware.htmlunit.javascript.HtmlUnitContextFactory.doTopCall(HtmlUnitContextFactory.java:309)
+	at net.sourceforge.htmlunit.corejs.javascript.ScriptRuntime.doTopCall(ScriptRuntime.java:3057)
+	at net.sourceforge.htmlunit.corejs.javascript.InterpretedFunction.call(InterpretedFunction.java:103)
+	at com.gargoylesoftware.htmlunit.javascript.JavaScriptEngine$4.doRun(JavaScriptEngine.java:614)
+	at com.gargoylesoftware.htmlunit.javascript.JavaScriptEngine$HtmlUnitContextAction.run(JavaScriptEngine.java:674)
+	at net.sourceforge.htmlunit.corejs.javascript.Context.call(Context.java:620)
+	at net.sourceforge.htmlunit.corejs.javascript.ContextFactory.call(ContextFactory.java:513)
+	at com.gargoylesoftware.htmlunit.javascript.JavaScriptEngine.callFunction(JavaScriptEngine.java:621)
+	at com.gargoylesoftware.htmlunit.javascript.JavaScriptEngine.callFunction(JavaScriptEngine.java:596)
+	at com.gargoylesoftware.htmlunit.html.HtmlPage.executeJavaScriptFunctionIfPossible(HtmlPage.java:997)
+	at com.gargoylesoftware.htmlunit.javascript.background.JavaScriptFunctionJob.runJavaScript(JavaScriptFunctionJob.java:53)
+	at com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutionJob.run(JavaScriptExecutionJob.java:102)
+	at com.gargoylesoftware.htmlunit.javascript.background.JavaScriptJobManagerImpl.runSingleJob(JavaScriptJobManagerImpl.java:328)
+	at com.gargoylesoftware.htmlunit.javascript.background.DefaultJavaScriptExecutor.run(DefaultJavaScriptExecutor.java:162)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at org.apache.http.conn.ssl.SSLConnectionSocketFactory.connectSocket(SSLConnectionSocketFactory.java:239)
+	at com.gargoylesoftware.htmlunit.HtmlUnitSSLConnectionSocketFactory.connectSocket(HtmlUnitSSLConnectionSocketFactory.java:145)
+	at org.apache.http.impl.conn.HttpClientConnectionOperator.connect(HttpClientConnectionOperator.java:118)
+	... 47 more
+14:14:42,148  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:14:42,174  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:14:42,175  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:14:43,738  WARN DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+14:17:39,991  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+14:17:39,992 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+14:32:14,816  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:32:14,820  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:32:14,822  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:32:17,166  WARN DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+14:34:57,633  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+14:34:57,633 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+14:38:44,770  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:38:44,778  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:38:44,779  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:38:47,334  WARN DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+14:42:23,982  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+14:42:23,986 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+14:42:24,330  WARN RatImport:63 - RAT ja gravado.
+14:43:01,243  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+14:43:01,243 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+14:43:01,283  WARN RatImport:63 - RAT ja gravado.
+14:43:45,922  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+14:43:45,923 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+14:43:45,948  WARN RatImport:63 - RAT ja gravado.
+14:44:27,048  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+14:44:27,049 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+14:44:27,053  WARN RatImport:63 - RAT ja gravado.
+14:44:27,060  WARN SidsFactory:217 - Numero não encontrado: S/N
+14:46:40,022  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:46:40,027  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:46:40,029  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:46:42,673  WARN DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+14:49:37,606  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+14:49:37,607 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+14:49:37,704  WARN RatImport:63 - RAT ja gravado.
+14:58:33,640  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:58:33,653  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:58:33,655  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+14:58:36,331  WARN DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+15:01:14,580  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+15:01:14,580 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+15:01:14,606  WARN RatImport:63 - RAT ja gravado.
+15:01:34,898  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+15:01:34,898 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+15:01:35,346  WARN RatImport:63 - RAT ja gravado.
+15:02:08,114  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+15:02:08,115 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+15:02:08,150  WARN RatImport:63 - RAT ja gravado.
+15:02:28,771  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+15:02:28,772 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+15:02:28,776  WARN RatImport:63 - RAT ja gravado.
+15:02:28,777  WARN SidsFactory:217 - Numero não encontrado: S/N
+15:04:32,135  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+15:04:32,141  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+15:04:32,142  WARN HibernatePersistence:58 - HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+15:04:33,783  WARN DriverManagerConnectionProviderImpl:93 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+15:07:16,623  WARN SqlExceptionHelper:144 - SQL Error: 1062, SQLState: 23000
+15:07:16,624 ERROR SqlExceptionHelper:146 - Duplicate entry '2014-RAT-0006582643' for key 'PRIMARY'
+15:07:16,659  WARN RatImport:63 - RAT ja gravado.
+17:14:28,075 ERROR SidsFactory:167 - java.net.SocketTimeoutException: Read timed out
+17:44:05,538  WARN SidsFactory:226 - Numero não encontrado: S/N
+17:44:57,953  WARN SidsFactory:226 - Numero não encontrado: 
+17:48:50,638  WARN SidsFactory:226 - Numero não encontrado: S/N
+17:49:24,599  WARN SidsFactory:226 - Numero não encontrado: S/N
+17:49:24,654  WARN SidsFactory:226 - Numero não encontrado: S/N
+17:50:14,932  WARN SidsFactory:226 - Numero não encontrado: S/N
+17:50:33,326  WARN SidsFactory:226 - Numero não encontrado: 
+17:51:39,814  WARN SidsFactory:226 - Numero não encontrado: S/N
+17:52:47,507  WARN SidsFactory:226 - Numero não encontrado: S/N
+17:54:30,493  WARN SidsFactory:226 - Numero não encontrado: S/N
+17:54:48,526  WARN SidsFactory:226 - Numero não encontrado: S/N
+17:54:48,535  WARN SidsFactory:226 - Numero não encontrado: S/N
+09:37:27,554 ERROR SidsFactory:284 - java.net.SocketTimeoutException: Read timed out
+09:40:11,005 ERROR HtmlPage:1054 - Error loading JavaScript from [https://web.sids.mg.gov.br/reds/js/jquery-1.7.1.min.js?v=3.5.0.4].
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.security.ssl.InputRecord.readFully(Unknown Source)
+	at sun.security.ssl.InputRecord.readV3Record(Unknown Source)
+	at sun.security.ssl.InputRecord.read(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.readRecord(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.readDataRecord(Unknown Source)
+	at sun.security.ssl.AppInputStream.read(Unknown Source)
+	at org.apache.http.impl.io.SessionInputBufferImpl.streamRead(SessionInputBufferImpl.java:136)
+	at org.apache.http.impl.io.SessionInputBufferImpl.read(SessionInputBufferImpl.java:195)
+	at org.apache.http.impl.io.ContentLengthInputStream.read(ContentLengthInputStream.java:178)
+	at org.apache.http.conn.EofSensorInputStream.read(EofSensorInputStream.java:137)
+	at org.apache.http.conn.EofSensorInputStream.read(EofSensorInputStream.java:150)
+	at com.gargoylesoftware.htmlunit.HttpWebConnection.downloadContent(HttpWebConnection.java:716)
+	at com.gargoylesoftware.htmlunit.HttpWebConnection.downloadResponseBody(HttpWebConnection.java:698)
+	at com.gargoylesoftware.htmlunit.HttpWebConnection.getResponse(HttpWebConnection.java:202)
+	at com.gargoylesoftware.htmlunit.WebClient.loadWebResponseFromWebConnection(WebClient.java:1297)
+	at com.gargoylesoftware.htmlunit.WebClient.loadWebResponse(WebClient.java:1214)
+	at com.gargoylesoftware.htmlunit.html.HtmlPage.loadJavaScriptFromUrl(HtmlPage.java:1108)
+	at com.gargoylesoftware.htmlunit.html.HtmlPage.loadExternalJavaScriptFile(HtmlPage.java:1051)
+	at com.gargoylesoftware.htmlunit.html.HtmlScript.executeScriptIfNeeded(HtmlScript.java:391)
+	at com.gargoylesoftware.htmlunit.html.HtmlScript$3.execute(HtmlScript.java:272)
+	at com.gargoylesoftware.htmlunit.html.HtmlScript.onAllChildrenAddedToPage(HtmlScript.java:286)
+	at com.gargoylesoftware.htmlunit.html.HTMLParser$HtmlUnitDOMBuilder.endElement(HTMLParser.java:702)
+	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+	at com.gargoylesoftware.htmlunit.html.HTMLParser$HtmlUnitDOMBuilder.endElement(HTMLParser.java:662)
+	at org.cyberneko.html.HTMLTagBalancer.callEndElement(HTMLTagBalancer.java:1170)
+	at org.cyberneko.html.HTMLTagBalancer.endElement(HTMLTagBalancer.java:1072)
+	at org.cyberneko.html.filters.DefaultFilter.endElement(DefaultFilter.java:206)
+	at org.cyberneko.html.filters.NamespaceBinder.endElement(NamespaceBinder.java:330)
+	at org.cyberneko.html.HTMLScanner$ContentScanner.scanEndElement(HTMLScanner.java:3126)
+	at org.cyberneko.html.HTMLScanner$ContentScanner.scan(HTMLScanner.java:2093)
+	at org.cyberneko.html.HTMLScanner.scanDocument(HTMLScanner.java:920)
+	at org.cyberneko.html.HTMLConfiguration.parse(HTMLConfiguration.java:499)
+	at org.cyberneko.html.HTMLConfiguration.parse(HTMLConfiguration.java:452)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at com.gargoylesoftware.htmlunit.html.HTMLParser$HtmlUnitDOMBuilder.parse(HTMLParser.java:926)
+	at com.gargoylesoftware.htmlunit.html.HTMLParser.parse(HTMLParser.java:245)
+	at com.gargoylesoftware.htmlunit.html.HTMLParser.parseHtml(HTMLParser.java:191)
+	at com.gargoylesoftware.htmlunit.DefaultPageCreator.createHtmlPage(DefaultPageCreator.java:268)
+	at com.gargoylesoftware.htmlunit.DefaultPageCreator.createPage(DefaultPageCreator.java:156)
+	at com.gargoylesoftware.htmlunit.WebClient.loadWebResponseInto(WebClient.java:455)
+	at com.gargoylesoftware.htmlunit.WebClient.getPage(WebClient.java:329)
+	at com.gargoylesoftware.htmlunit.WebClient.getPage(WebClient.java:394)
+	at com.gargoylesoftware.htmlunit.WebClient.getPage(WebClient.java:379)
+	at pmmg.rpm7.seo.SidsFactory.getRelatorio(SidsFactory.java:109)
+	at pmmg.rpm7.seo.RatImport.<init>(RatImport.java:29)
+	at pmmg.rpm7.seo.RatImport.main(RatImport.java:88)
+09:55:24,081  WARN SidsFactory:226 - Numero não encontrado: S/N
+09:56:55,560  WARN SidsFactory:226 - Numero não encontrado: 
+09:58:44,895  WARN SidsFactory:226 - Numero não encontrado: S/N
+10:01:03,876  WARN SidsFactory:226 - Numero não encontrado: S/N
+10:01:51,543  WARN SidsFactory:226 - Numero não encontrado: S/N
+10:02:29,368  WARN SidsFactory:226 - Numero não encontrado: S/N
+10:03:08,327  WARN SidsFactory:226 - Numero não encontrado: S/N
+10:03:42,080  WARN SidsFactory:226 - Numero não encontrado: 
+10:04:16,872  WARN SidsFactory:226 - Numero não encontrado: 
+10:04:33,729  WARN SidsFactory:226 - Numero não encontrado: S/N
+10:04:54,801  WARN SidsFactory:226 - Numero não encontrado: S/N
+10:08:45,209  WARN SidsFactory:226 - Numero não encontrado: 
+10:09:47,290  WARN SidsFactory:226 - Numero não encontrado: S/N
+10:10:10,653  WARN SidsFactory:226 - Numero não encontrado: S/N
+10:10:34,405  WARN SidsFactory:226 - Numero não encontrado: S/N
+10:17:15,720  WARN SidsFactory:226 - Numero não encontrado: S/N
+10:36:13,707  WARN SidsFactory:226 - Numero não encontrado: 
+10:40:57,357  WARN SidsFactory:220 - Numero não encontrado: S/N
+10:45:40,533  WARN SidsFactory:220 - Numero não encontrado: S/N
+10:57:40,714  WARN SidsFactory:226 - Numero não encontrado: S/N
+11:24:16,921  WARN SidsFactory:226 - Numero não encontrado: S/N
+14:43:57,976  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,101  WARN SidsFactory:227 - Numero não encontrado: 
+14:43:58,148  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,179  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,195  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,226  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,226  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,288  WARN SidsFactory:227 - Numero não encontrado: 
+14:43:58,288  WARN SidsFactory:227 - Numero não encontrado: 
+14:43:58,382  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,398  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,476  WARN SidsFactory:227 - Numero não encontrado: 
+14:43:58,491  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,507  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,507  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,522  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,569  WARN SidsFactory:227 - Numero não encontrado: 
+14:43:58,569  WARN SidsFactory:221 - Numero não encontrado: S/N
+14:43:58,569  WARN SidsFactory:221 - Numero não encontrado: S/N
+14:43:58,585  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:43:58,632  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:08,405  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:08,436  WARN SidsFactory:227 - Numero não encontrado: 
+14:49:08,467  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:08,514  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:08,545  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:08,561  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:08,576  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:08,576  WARN SidsFactory:227 - Numero não encontrado: 
+14:49:08,732  WARN SidsFactory:227 - Numero não encontrado: 
+14:49:08,841  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:09,122  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:09,528  WARN SidsFactory:227 - Numero não encontrado: 
+14:49:09,613  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:09,689  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:09,765  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:09,844  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:09,879  WARN SidsFactory:227 - Numero não encontrado: 
+14:49:09,879  WARN SidsFactory:221 - Numero não encontrado: S/N
+14:49:09,879  WARN SidsFactory:221 - Numero não encontrado: S/N
+14:49:09,894  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:49:09,910  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:55:10,078  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:55:10,109  WARN SidsFactory:227 - Numero não encontrado: 
+14:55:44,253  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:55:44,284  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:55:44,300  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:56:10,494  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:56:10,510  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:56:10,565  WARN SidsFactory:227 - Numero não encontrado: 
+14:56:10,565  WARN SidsFactory:227 - Numero não encontrado: 
+14:56:12,047  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:56:13,300  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:56:14,571  WARN SidsFactory:227 - Numero não encontrado: 
+14:56:14,587  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:56:14,603  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:56:14,603  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:56:14,634  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:56:15,727  WARN SidsFactory:227 - Numero não encontrado: 
+14:56:15,727  WARN SidsFactory:221 - Numero não encontrado: S/N
+14:56:15,727  WARN SidsFactory:221 - Numero não encontrado: S/N
+14:56:15,758  WARN SidsFactory:227 - Numero não encontrado: S/N
+14:56:15,789  WARN SidsFactory:227 - Numero não encontrado: S/N

@@ -1,19 +1,15 @@
 package pmmg.rpm7.seo.modelos;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
 
-@Entity
-@Table(name = "rat_prod")
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+
 public class RatProdutividade {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "nr_atividade")
 	private String nrAtividade;
 	private String descricao;
 	private Integer qtd;
@@ -43,5 +39,21 @@ public class RatProdutividade {
 		this.qtd = qtd;
 	}
 	
+	public static interface RatProdutividadeMapper{
+		@Select("select id, descricao, nr_atividade, qtd from rat_prod where nr_atividade = #{nrAtividade}")
+		@Results(value = {
+			@Result(property = "id", column = "id"),
+			@Result(property = "nrAtividade", column = "nr_atividade"),
+			@Result(property = "descricao", column = "descricao"),
+			@Result(property = "qtd", column = "qtd")
+		})
+		public List<RatProdutividade> getProdutividade(Rat rat);
+		
+		@Insert("insert into rat_prod (nr_atividade, descricao, qtd) values (#{nrAtividade}, #{descricao}, #{qtd}) "
+				+ "on duplicate key update nr_atividade = #{nrAtividade}, descricao = #{descricao}, qtd = #{qtd}")
+		@Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+		
+		void inserir(RatProdutividade prod);
+	}
 	
 }

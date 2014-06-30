@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<environments default="7rpm">
+		<environment id="7rpm">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://10.14.46.3:3306/7rpm"/>
+				<property name="username" value="root"/>
+				<property name="password" value="campos"/>
+			</dataSource>
+		</environment>
+	</environments>
+</configuration>

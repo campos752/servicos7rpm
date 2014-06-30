@@ -1,16 +1,12 @@
 package pmmg.rpm7.seo.modelos;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
 
-@Entity
-@Table(name="municipios_7rpm")
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 
 public class Municipio {
-	@Id
-	@Column(name = "cod_municipio_fato")
 	private Integer id;
 	private String nome;
 	
@@ -36,6 +32,14 @@ public class Municipio {
 		this.nome = nome;
 	}
 	
+	public static interface MunicipioMapper {
+		@Select("select * from municipios_7rpm")
+		@Results(value = {
+				@Result(property = "id", column = "cod_municipio_fato"),
+				@Result(property = "nome", column = "nome"),
+		})
+		List<Municipio> getTodos();
+	}
 	
 	
 }

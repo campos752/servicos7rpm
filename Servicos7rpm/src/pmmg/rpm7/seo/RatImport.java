@@ -1,73 +1,105 @@
 package pmmg.rpm7.seo;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-
+import org.apache.http.conn.HttpHostConnectException;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
 import pmmg.rpm7.seo.modelos.Municipio;
 import pmmg.rpm7.seo.modelos.Rat;
+import pmmg.rpm7.seo.modelos.Rat.RatMapper;
+import pmmg.rpm7.seo.modelos.RatProdutividade.RatProdutividadeMapper;
 import pmmg.rpm7.seo.modelos.RatProdutividade;
 
 public class RatImport {
 	private SidsFactory f = new SidsFactory();
+	private RatParser parser = new RatParser();
+	private Map<String, String> unidades;
 	private static Logger log = Logger.getLogger(RatImport.class);
-	private  EntityManager em = f.getEntityManager();
+	private SqlSession session;
 	
-	public RatImport(){
+	
+	public RatImport() throws HttpHostConnectException{
+		session = f.getFactory().openSession();
 		f.logar("pm1277524", "@casp123+-");
-		Map<String, String> unidades = f.getUnidades();
+		unidades = f.getUnidades();
 		log.info("Qtd de unidades importadas:" + unidades.size());
+		
+		processaRatsAbertos();
+		
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DAY_OF_YEAR, -1);
 		log.info("Iniciando importacao a partir do dia: " + cal.getTime().toString());
-		List<String> relatorio = f.getRelatorio(new Municipio(312230, "DIVINOPOLIS"), cal.getTime(), 
-				SidsFactory.REL_DETALHADO, null);
-		log.info("Relatorio detalhado obtido com sucesso.");
+		List<String> relatorio = f.getListagemRAT(new Municipio(312230, "DIVINOPOLIS"), cal.getTime());
+		log.info("Listagem de rat obtida com sucesso.");
+		RatMapper mapper = session.getMapper(RatMapper.class);
+		RatProdutividadeMapper prodMapper = session.getMapper(RatProdutividadeMapper.class);
 		for(String linha : relatorio){
 			if(!linha.startsWith("20")) continue;
 			Rat rat = new Rat();
-			f.processaLinha(linha, rat);
-			log.info("Obtendo produtividade do RAT");
-			if("Fechado".equals(rat.getEstado())){
-				List<String> relProd = f.getRelatorio(null, cal.getTime(), SidsFactory.REL_CONSOLIDADO, rat.getId());
-				for(String prod : relProd){
-					log.info("Iten de produtividade: " + prod);
-					if(prod.startsWith("Unidade")) continue;
-					String[] dados = prod.split(";");
-					if(dados[0].length() > 0){
-						rat.setCodUnidade(unidades.get(dados[0]));
-						rat.setNomeUnidade(dados[0]);
-					}
-					RatProdutividade p = new RatProdutividade();
-					p.setNrAtividade(rat.getId());
-					p.setDescricao(dados[1]);
-					p.setQtd(Integer.parseInt(dados[2]));
-					if(rat.getProdutividade() == null) rat.setProdutividade(new ArrayList<RatProdutividade>());
-					rat.getProdutividade().add(p);
-				}
+			parser.processaLinha(linha, rat);
+			Rat r = mapper.getRat(rat.getId());
+			if(r != null && "Fechado".equals(r.getEstado())){
+				log.info("Rat nr " + r.getId() + " ja cadastrado no banco de dados");
+				continue;
 			}
-			em.getTransaction().begin();
-			em.persist(rat);
-			em.getTransaction().commit();
+			processaProdutividade(rat, cal);
+			
+			mapper.inserir(rat);
+			if(rat.getProdutividade() != null){
+				for(RatProdutividade p : rat.getProdutividade())
+					prodMapper.inserir(p);
+			}
+
+			session.commit();
 			log.info("Rat gravado com sucesso");
 		}
+		session.close();
+		f.sair();
+	}
+	
+	private void processaProdutividade(Rat rat, Calendar cal){
+		log.info("Obtendo produtividade do RAT");
+		if("Fechado".equals(rat.getEstado())){
+			List<String> relProd;
+			relProd = f.getProdutividade(rat);
+			parser.setProdutividade(relProd, rat, unidades);
+		}
+
+	}
+	
+	public void fecharConeccoes(){
 		f.sair();
 	}
 	
 	private void processaRatsAbertos(){
-		@SuppressWarnings("unchecked")
-		List<Rat> ratAbertos = em.createQuery("select r from Rat r").getResultList();
+		log.info("Iniciando processamento de RAT abertos");
+		SqlSession session = f.getFactory().openSession();
+		List<Rat> ratAbertos = session.getMapper(RatMapper.class).getRatsAbertos("Aberto");
 		for(Rat rat : ratAbertos){
-			
+			if(f.isRatFechado(rat.getId())){
+				log.info("Rat nr " + rat.getId() + " fechado");
+				
+			}
 		}
 	}
 	
 	public static void main(String[] args) {
-		new RatImport();
+		RatImport rat = null;
+		while(true){
+			try{
+				rat = new RatImport();
+				log.info("Terminado importacao de RAT.");
+				break;
+			}catch(HttpHostConnectException | StringIndexOutOfBoundsException e){
+				log.error("Não foi possível conectar ao servidor SIDS, tentando novamente em 1 minuto.");
+				if(rat != null)	rat.fecharConeccoes();
+				rat = null;
+				try{ Thread.sleep(10000);}catch(InterruptedException e1){}
+			}
+		}
 	}
 }
