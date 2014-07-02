@@ -6665,3 +6665,19 @@ java.net.SocketTimeoutException: Read timed out
 14:56:15,727  WARN SidsFactory:221 - Numero não encontrado: S/N
 14:56:15,758  WARN SidsFactory:227 - Numero não encontrado: S/N
 14:56:15,789  WARN SidsFactory:227 - Numero não encontrado: S/N
+16:03:48,363 ERROR RatImport:104 - Não foi possível conectar ao servidor SIDS, tentando novamente em 1 minuto.
+16:16:50,821 ERROR SidsFactory:166 - java.net.SocketTimeoutException: Read timed out
+10:02:51,141 ERROR SidsFactory:166 - java.net.SocketTimeoutException: Read timed out
+10:15:56,650 ERROR SidsFactory:167 - java.net.SocketTimeoutException: Read timed out
+10:28:46,810 ERROR SidsFactory:167 - java.net.SocketTimeoutException: Read timed out
+10:28:46,811 ERROR RatImport:105 - Não foi possível conectar ao servidor SIDS, tentando novamente em 1 minuto.
+10:36:54,178 ERROR SidsFactory:167 - java.net.SocketTimeoutException: Read timed out
+10:36:54,179 ERROR RatImport:105 - Não foi possível conectar ao servidor SIDS, tentando novamente em 1 minuto.
+10:45:33,035 ERROR SidsFactory:167 - java.net.SocketTimeoutException: Read timed out
+10:45:33,035 ERROR RatImport:105 - Não foi possível conectar ao servidor SIDS, tentando novamente em 1 minuto.
+10:54:03,754 ERROR SidsFactory:167 - java.net.SocketTimeoutException: Read timed out
+10:54:03,754 ERROR RatImport:105 - Não foi possível conectar ao servidor SIDS, tentando novamente em 1 minuto.
+11:02:33,701 ERROR SidsFactory:167 - java.net.SocketTimeoutException: Read timed out
+11:02:33,701 ERROR RatImport:105 - Não foi possível conectar ao servidor SIDS, tentando novamente em 1 minuto.
+11:10:32,914 ERROR SidsFactory:167 - java.net.SocketTimeoutException: Read timed out
+11:10:32,914 ERROR RatImport:105 - Não foi possível conectar ao servidor SIDS, tentando novamente em 1 minuto.

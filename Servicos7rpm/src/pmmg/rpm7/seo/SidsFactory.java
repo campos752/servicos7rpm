@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -95,7 +96,7 @@ public class SidsFactory {
 		
 	}
 	
-	public List<String> getListagemRAT(Municipio municipio, Date data){
+	public List<String> getListagemRAT(Municipio municipio, Date data) throws Exception{
 		List<String> resultado = null;
 		log.info("Iniciando processamento de listagem de RAT");
 		if(paginaAtual == null){
@@ -162,6 +163,9 @@ public class SidsFactory {
 			}
 			buf.close();
 			log.info("LIstagem obtida com sucesso.");
+		}catch(SocketTimeoutException e1){
+			log.error(e1);
+			throw new Exception("Timeout ");
 		} catch (FailingHttpStatusCodeException | IOException e) {
 			log.error(e);
 		}
@@ -365,7 +369,7 @@ public class SidsFactory {
 	}
 	
 	public boolean isRatFechado(String nrAtividade){
-		log.info("Verificado se RAT " + nrAtividade + " esta aberto");
+		log.info("Verificado se RAT " + nrAtividade + " está fechado");
 		if(paginaAtual == null){
 			log.error("Login nao efetuado no site.");
 			return false;
