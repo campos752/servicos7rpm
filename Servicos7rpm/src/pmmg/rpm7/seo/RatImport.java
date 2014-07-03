@@ -1,10 +1,13 @@
 package pmmg.rpm7.seo;
 
+import java.net.SocketTimeoutException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.conn.HttpHostConnectException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
@@ -22,17 +25,19 @@ public class RatImport {
 	private SqlSession session;
 	
 	
-	public RatImport() throws Exception{
+	public RatImport(){
 		session = f.getFactory().openSession();
 		f.logar("pm1277524", "@casp123+-");
 		unidades = f.getUnidades();
 		log.info("Qtd de unidades importadas:" + unidades.size());
 		
 		processaRatsAbertos();
-		
+	}
+	
+	public void importarDiaAnterior() throws SocketTimeoutException{
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DAY_OF_YEAR, -1);
-		log.info("Iniciando importacao a partir do dia: " + cal.getTime().toString());
+		log.info("Iniciando importacao do dia: " + cal.getTime().toString());
 		List<String> relatorio = f.getListagemRAT(new Municipio(312230, "DIVINOPOLIS"), cal.getTime());
 		log.info("Listagem de rat obtida com sucesso.");
 		for(String linha : relatorio){
@@ -48,8 +53,32 @@ public class RatImport {
 			
 			gravarRat(rat);
 		}
-		session.close();
-		f.sair();
+	}
+	
+	public void importar(Date inicio, Date fim) throws SocketTimeoutException{
+		Calendar calInicial = Calendar.getInstance();
+		calInicial.setTime(inicio);
+		Calendar calFinal = Calendar.getInstance();
+		calFinal.setTime(fim);
+		while(calInicial.before(calFinal)){
+			log.info("Iniciando importacao a partir do dia: " + calInicial.getTime().toString());
+			List<String> relatorio = f.getListagemRAT(new Municipio(312230, "DIVINOPOLIS"), calInicial.getTime());
+			log.info("Listagem de rat obtida com sucesso.");
+			for(String linha : relatorio){
+				if(!linha.startsWith("20")) continue;
+				Rat rat = new Rat();
+				parser.processaLinha(linha, rat);
+				Rat r = session.getMapper(RatMapper.class).getRat(rat.getId());
+				if(r != null && "Fechado".equals(r.getEstado())){
+					log.info("Rat nr " + r.getId() + " ja cadastrado no banco de dados");
+					continue;
+				}
+				processaProdutividade(rat);
+				
+				gravarRat(rat);
+			}
+			calInicial.add(Calendar.DAY_OF_YEAR, 1);
+		}
 	}
 	
 	private void processaProdutividade(Rat rat){
@@ -77,6 +106,7 @@ public class RatImport {
 	}
 	
 	public void fecharConeccoes(){
+		session.close();
 		f.sair();
 	}
 	
@@ -99,9 +129,19 @@ public class RatImport {
 		while(true){
 			try{
 				rat = new RatImport();
+				if(args.length == 2){
+					SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yy");
+					try {
+						rat.importar(fmt.parse(args[0]), fmt.parse(args[1]));
+					} catch (ParseException e) {
+						log.error(e);
+					}
+				}else 
+					rat.importarDiaAnterior();
 				log.info("Terminado importacao de RAT.");
+				rat.fecharConeccoes();
 				break;
-			}catch(Exception e){
+			}catch(SocketTimeoutException e){
 				log.error("Não foi possível conectar ao servidor SIDS, tentando novamente em 1 minuto.");
 				if(rat != null)	rat.fecharConeccoes();
 				rat = null;

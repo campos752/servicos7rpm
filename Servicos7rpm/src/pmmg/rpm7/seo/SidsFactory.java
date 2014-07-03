@@ -96,7 +96,7 @@ public class SidsFactory {
 		
 	}
 	
-	public List<String> getListagemRAT(Municipio municipio, Date data) throws Exception{
+	public List<String> getListagemRAT(Municipio municipio, Date data) throws SocketTimeoutException{
 		List<String> resultado = null;
 		log.info("Iniciando processamento de listagem de RAT");
 		if(paginaAtual == null){
@@ -165,7 +165,7 @@ public class SidsFactory {
 			log.info("LIstagem obtida com sucesso.");
 		}catch(SocketTimeoutException e1){
 			log.error(e1);
-			throw new Exception("Timeout ");
+			throw new SocketTimeoutException("Servidor Reds não respondeu a requisição");
 		} catch (FailingHttpStatusCodeException | IOException e) {
 			log.error(e);
 		}
@@ -419,7 +419,6 @@ public class SidsFactory {
 			requisicao.setRequestParameters(params);
 			
 			paginaAtual = webClient.getPage(requisicao);
-//			log.info("Resultado de Rat retornado >> " + paginaAtual.asText());
 			if(paginaAtual.asText().indexOf("Fechado") >=0)
 				return true;
 			else 
