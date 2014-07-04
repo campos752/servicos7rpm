@@ -42,7 +42,6 @@ public class RatParser {
 				log.warn(linha, e);
 			}
 			String endereco = scnCampo.next();
-			log.info(endereco);
 			Scanner scnEndereco = new Scanner(endereco);
 			StringBuilder strNomeLogradouro = new StringBuilder();
 			while(scnEndereco.hasNext()){
@@ -95,7 +94,6 @@ public class RatParser {
 	
 	public void setProdutividade(List<String> relProd, Rat rat, Map<String, String> unidades){
 		for(String prod : relProd){
-			log.info("Iten de produtividade: " + prod);
 			if(prod.startsWith("Unidade")) continue;
 			String[] dados = prod.split(";");
 			if(dados[0].length() > 0){

@@ -138,7 +138,7 @@ public class Rat {
 		
 		@Select("select nr_atividade, estado, bairro, natureza, cod_unidade_servico, endereco_compl, data_inicio, "
 				+ "descricao, endereco, matricula_digitador, municipio, nome_digitador, nome_unidade_servico, num_endereco, "
-				+ "tipo_logradouro from rat where estado = #{estado}")
+				+ "tipo_logradouro from rat where estado = #{estado} and data_inicio >= date_sub(now(), interval 30 day)")
 		@Results(value = {
 				@Result(property = "bairro", column = "bairro"),
 				@Result(property = "codNatureza", column = "natureza"),

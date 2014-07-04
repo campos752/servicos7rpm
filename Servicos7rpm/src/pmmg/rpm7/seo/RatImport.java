@@ -82,7 +82,7 @@ public class RatImport {
 	}
 	
 	private void processaProdutividade(Rat rat){
-		log.info("Obtendo produtividade do RAT");
+		log.info("Obtendo produtividade do RAT " + rat.getId());
 		if("Fechado".equals(rat.getEstado())){
 			List<String> relProd;
 			relProd = f.getProdutividade(rat);
@@ -101,7 +101,7 @@ public class RatImport {
 		}
 
 		session.commit();
-		log.info("Rat gravado com sucesso");
+		log.info("Rat nr: " + rat.getId() + " gravado com sucesso");
 
 	}
 	

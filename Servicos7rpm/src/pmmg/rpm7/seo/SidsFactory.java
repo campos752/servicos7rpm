@@ -57,6 +57,7 @@ public class SidsFactory {
 		webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
 		webClient.getOptions().setThrowExceptionOnScriptError(false);
 		webClient.getOptions().setPrintContentOnFailingStatusCode(false);
+		webClient.getOptions().setCssEnabled(false);
 		
 		Reader r;
 		try {
@@ -80,15 +81,15 @@ public class SidsFactory {
 
 	public void logar(String usuario, String senha){
 		try {
+			log.info("Logando no site");
 			paginaAtual = webClient.getPage("https://web.sids.mg.gov.br/reds/index.do");
-			log.info("Pagina inicial carregada.");
 			HtmlForm formLogin = paginaAtual.getFormByName("usernamePasswordLoginForm");
 			HtmlTextInput txtUsuario = formLogin.getInputByName("josso_username");
 			HtmlPasswordInput txtSenha = formLogin.getInputByName("josso_password");
 			txtUsuario.setValueAttribute(usuario);
 			txtSenha.setValueAttribute(senha);
 			paginaAtual = formLogin.getInputByName("submit_btn").click();
-			log.info("Login efetuado");
+			log.info("Login efetuado com sucesso");
 			isPagRelCarregada = false;
 		} catch (FailingHttpStatusCodeException | IOException e) {
 			e.printStackTrace();
@@ -162,7 +163,7 @@ public class SidsFactory {
 	        	resultado.add(linha);
 			}
 			buf.close();
-			log.info("LIstagem obtida com sucesso.");
+			log.info("Listagem obtida com sucesso.");
 		}catch(SocketTimeoutException e1){
 			log.error(e1);
 			throw new SocketTimeoutException("Servidor Reds não respondeu a requisição");
@@ -225,7 +226,6 @@ public class SidsFactory {
 			requisicao.setRequestParameters(params);
 			
 			paginaAtual = webClient.getPage(requisicao);
-			log.info("Pagina pesquisada retornada, obtendo arquivo CSV");
 			
 			HtmlImageInput csv = paginaAtual.getElementByName("CSV");
 			Page p = csv.click();
